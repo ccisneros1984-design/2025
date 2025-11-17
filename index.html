@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Cisneros Family Christmas Survey</title>
+
+<style>
+:root {
+  --red:#d2343b;
+  --green:#0d6b39;
+  --gold:#d4af37;
+  --glass:rgba(255,255,255,0.22);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  padding:0;
+  font-family:"Poppins","Segoe UI",sans-serif;
+  background:radial-gradient(circle at top,#1a2845,#070b16 55%,#02040a 100%);
+  color:white;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* Snow container */
+.snow-container{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.snowflake{
+  position:absolute;
+  top:-50px;
+  border-radius:50%;
+  opacity:0.9;
+  filter:blur(0.4px);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translate3d(0,-50px,0);}
+  100%{transform:translate3d(var(--driftX,40px),110vh,0);}
+}
+
+/* Santa */
+.santa{
+  position:fixed;
+  top:80px;
+  left:-320px;
+  font-size:2.4rem;
+  z-index:3;
+  animation:fly 14s linear infinite;
+}
+@keyframes fly{
+  0%{transform:translateX(-320px);opacity:0;}
+  10%{opacity:1;}
+  50%{transform:translateX(110vw);opacity:1;}
+  100%{transform:translateX(140vw);opacity:0;}
+}
+
+/* Lights */
+.lights{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:4;
+}
+.lights span{
+  position:absolute;
+  width:14px;
+  height:24px;
+  border-radius:50%;
+  background:red;
+  box-shadow:0 0 10px red;
+  animation:blink 1.8s infinite;
+}
+@keyframes blink{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.3;transform:scale(.8);}
+}
+</style>
+
+<script>
+/* Generate light bulb placement dynamically */
+</script>
+
+<style>
+/* Page Card */
+.page{
+  position:relative;
+  z-index:10;
+  max-width:900px;
+  margin:60px auto;
+  padding:32px 38px;
+  background:var(--glass);
+  backdrop-filter:blur(16px);
+  border-radius:24px;
+  border:2px solid rgba(255,255,255,0.35);
+  box-shadow:0 18px 50px rgba(0,0,0,0.55);
+}
+.title-banner{
+  display:inline-flex;
+  padding:14px 32px;
+  background:linear-gradient(120deg,var(--red),#ff6b75);
+  border-radius:999px;
+  color:white;
+  font-size:1.6rem;
+  font-weight:700;
+  gap:10px;
+}
+
+/* Input sections */
+.section-title{
+  font-size:1.05rem;
+  font-weight:700;
+  margin:14px 0 6px;
+  color:var(--gold);
+  display:flex;
+}
+input[type=text],textarea{
+  width:100%;
+  background:rgba(255,255,255,0.16);
+  padding:9px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.45);
+  color:white;
+  font-size:0.98rem;
+  margin-bottom:10px;
+}
+textarea{
+  height:72px;
+  resize:none;
+}
+
+/* Layout rows */
+.section-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+}
+.section-box{
+  flex:1 1 260px;
+}
+
+/* Buttons */
+button{
+  background:var(--red);
+  color:white;
+  padding:12px 22px;
+  border-radius:12px;
+  border:none;
+  font-size:1rem;
+  cursor:pointer;
+  margin-top:20px;
+}
+button:hover{
+  background:#ff6b75;
+}
+</style>
+</head>
+
+<body>
+
+<div class="snow-container" id="snowContainer"></div>
+
+<div class="santa">🦌🦌🎅🛷</div>
+
+<div class="lights">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="page">
+  <div style="text-align:center;margin-bottom:10px;">
+    <div class="title-banner">🎄 Cisneros Family Christmas Survey 🎁</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">👦 Child Name</div>
+    <input id="childName" type="text">
+  </div>
+
+  <div class="section-row">
+    <div class="section-box">
+      <div class="section-title">⭐ Favorite Colors</div>
+      <input id="colors1" type="text">
+      <input id="colors2" type="text">
+    </div>
+    <div class="section-box">
+      <div class="section-title">🎁 Favorite Brands</div>
+      <input id="brands1" type="text">
+      <input id="brands2" type="text">
+    </div>
+  </div>
+
+  <div class="section-row">
+    <div class="section-box">
+      <div class="section-title">🏬 Favorite Stores</div>
+      <input id="stores1" type="text">
+      <input id="stores2" type="text">
+    </div>
+    <div class="section-box">
+      <div class="section-title">🎉 Favorite Activities</div>
+      <textarea id="activities1"></textarea>
+      <textarea id="activities2"></textarea>
+      <textarea id="activities3"></textarea>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🍪 Favorite Snacks</div>
+    <input id="snacks1" type="text">
+    <input id="snacks2" type="text">
+  </div>
+
+  <div class="section-row">
+    <div class="section-box">
+      <div class="section-title">💚 Likes</div>
+      <textarea id="likes1"></textarea>
+      <textarea id="likes2"></textarea>
+      <textarea id="likes3"></textarea>
+    </div>
+    <div class="section-box">
+      <div class="section-title">💔 Dislikes</div>
+      <textarea id="dislikes1"></textarea>
+      <textarea id="dislikes2"></textarea>
+      <textarea id="dislikes3"></textarea>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎁 Wishlist (Top 5)</div>
+    <input id="w1" type="text">
+    <input id="w2" type="text">
+    <input id="w3" type="text">
+    <input id="w4" type="text">
+    <input id="w5" type="text">
+  </div>
+
+  <button onclick="sendEmail()">📨 Send Survey</button>
+</div>
+
+<script>
+/* Snow generator */
+(function(){
+  const c = document.getElementById('snowContainer');
+  for(let i=0;i<70;i++){
+    let f=document.createElement('div');
+    f.className='snowflake';
+    const size=Math.random()*4+2;
+    f.style.width=size+'px';
+    f.style.height=size+'px';
+    f.style.left=Math.random()*100+'vw';
+    f.style.animationDuration=(12+Math.random()*10)+'s';
+    f.style.setProperty('--driftX',(Math.random()*80-40)+'px');
+    f.style.background='radial-gradient(circle,#fff,transparent)';
+    c.appendChild(f);
+  }
+})();
+
+/* Email sender */
+function sendEmail(){
+  const toList = "ccisneros1984@gmail.com; carbrieljon@gmail.com";
+
+  const name = childName.value || "Child";
+
+  const subject = `${name} Christmas Survey`;
+
+  let body = "";
+  body += `Child Name: ${childName.value}\n\n`;
+  body += `Favorite Colors:\n- ${colors1.value}\n- ${colors2.value}\n\n`;
+  body += `Favorite Brands:\n- ${brands1.value}\n- ${brands2.value}\n\n`;
+  body += `Favorite Stores:\n- ${stores1.value}\n- ${stores2.value}\n\n`;
+  body += `Favorite Activities:\n- ${activities1.value}\n- ${activities2.value}\n- ${activities3.value}\n\n`;
+  body += `Favorite Snacks:\n- ${snacks1.value}\n- ${snacks2.value}\n\n`;
+  body += `Likes:\n- ${likes1.value}\n- ${likes2.value}\n- ${likes3.value}\n\n`;
+  body += `Dislikes:\n- ${dislikes1.value}\n- ${dislikes2.value}\n- ${dislikes3.value}\n\n`;
+  body += `Wishlist:\n- ${w1.value}\n- ${w2.value}\n- ${w3.value}\n- ${w4.value}\n- ${w5.value}\n`;
+
+  const mailto = `mailto:${encodeURIComponent(toList)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailto;
+}
+</script>
+
+</body>
+</html>
